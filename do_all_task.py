@@ -28,8 +28,8 @@ def show_image_size_survey():
         plt.title("Count by size = width + height ")
         plt.xticks(x_pos, x)
 
-    size_train= {100: 1077, 200: 17298, 300: 36400, 400: 42121, 500: 39558, 600: 34338, 700: 19799, 800: 33470}
-    size_test = {100: 219, 200: 3483, 300: 6772, 400: 6289, 500: 7343, 600: 5800, 700: 4109, 800: 10378}
+    size_train= {'<100': 1077, '100-200': 17298, '200-300': 36400, '300-400': 42121, '400-500': 39558, '500-600': 34338, '600-700': 19799, '>700': 33470}
+    size_test = {'0-100': 219, '100-200': 3483,'200-300': 6772, '300-400': 6289, '400-500': 7343, '500-600': 5800, '600-700': 4109, '>700': 10378}
 
     show_graph(size_train)
     show_graph(size_test)
@@ -88,8 +88,8 @@ def get_input_shape_model():
 
 
 if __name__ == '__main__':
-    ## task 1: survey in image size
-    # show_image_size_survey()
+    # task 1: survey in image size
+    show_image_size_survey()
 
     # task 2: show fnr, tpr, threshold graph
     # spoof_score_txt = '/home/duong/project/pyimage_research/result_model/version_2/result_new_b0_ver4/test_flow_from_directory_cp_01/score_prediction.txt'
@@ -101,3 +101,5 @@ if __name__ == '__main__':
     ## task 3: load model and get input shape of model
     # get_input_shape_model()
     
+    ## u dont know shit
+    # {"installed":{"client_id":"617384173899-lhsd59eokdd9aj4f7h8g60ch4v215c6u.apps.googleusercontent.com","project_id":"movefile-10122020","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"SWDgjfo66O7gkj0OS-zHfhJs","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}

@@ -33,8 +33,8 @@ class config_to_train():
         self.batch_size = batch_size
         self.EPOCHS = EPOCHS
         self.patience = patience
-        self.checkpoint_dir = None
-        self.result_folder = None
+        self.checkpoint_dir = ''
+        self.result_folder = ''
     
     def train(self):
         model = self.build_model(self.img_width, self.img_height, self.img_depth, self.classes)
@@ -48,7 +48,10 @@ class config_to_train():
 
         training_output_txt = result_train_folder + '/result_training_output.txt'
 
-        train_datagen = ImageDataGenerator(rotation_range=20,horizontal_flip=True,fill_mode='nearest',brightness_range=[0.75,1.25])
+        train_datagen = ImageDataGenerator( rotation_range=20,
+                                            horizontal_flip=True,
+                                            fill_mode='nearest',
+                                            brightness_range=[0.75,1.25])
 
         train_dir = crop_data_train
         train_generator = train_datagen.flow_from_directory(
@@ -210,10 +213,26 @@ if __name__ == '__main__':
     # b0_ver_1.train()
     # b0_ver_1.eval()
 
-    b0_ver_2 = config_to_train(model_name='b0_ver_2', build_model=build_b0_gap, INIT_LR=3e-4 )
-    b0_ver_2.train()
-    b0_ver_2.eval()
+    # b0_ver_2 = config_to_train(model_name='b0_ver_2', build_model=build_b0_gap, INIT_LR=3e-4 )
+    # b0_ver_2.train()
+    # b0_ver_2.eval()
 
     # b0_ver_3 = config_to_train(model_name='b0_ver_3', build_model=build_b0_fully_connected, INIT_LR=1e-4 )
     # b0_ver_3.train()
     # b0_ver_3.eval()
+
+    # b1_ver_1 = config_to_train(model_name='b1_ver_1', build_model=build_b1_gap, INIT_LR=1e-4, img_height=240, img_width=240, EPOCHS=15 )
+    # b1_ver_1.train()
+    # b1_ver_1.eval()
+
+    # b1_ver_2 = config_to_train(model_name='b1_ver_2', build_model=build_b1_gap, INIT_LR=3e-4, img_height=240, img_width=240, EPOCHS=15 )
+    # b1_ver_2.train()
+    # b1_ver_2.eval()
+
+    b4_ver_1 = config_to_train(model_name='b4_ver_1', build_model=build_b4_gap, INIT_LR=1e-4, img_height=380, img_width=380, EPOCHS=15 )
+    b4_ver_1.train()
+    b4_ver_1.eval()
+
+    b4_ver_2 = config_to_train(model_name='b4_ver_2', build_model=build_b4_gap, INIT_LR=3e-4, img_height=380, img_width=380, EPOCHS=15 )
+    b4_ver_2.train()
+    b4_ver_2.eval()

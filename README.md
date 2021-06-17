@@ -1,6 +1,7 @@
 # Topic
 Using Efficient Net to solve problem:      
-Face anti spoofing
+Face anti spoofing      
+Phase 1: photo attack
 
 # Description
 - Based on better result in computer vision tasks, Efficient net will be used in this code. Paper about EfficientNet [here](https://arxiv.org/pdf/1905.11946.pdf)
@@ -14,21 +15,26 @@ pip install -r requirements.txt
 ```
 # Usage
 1. Config and train models
- - Go to model_zoo.py to see my initial models or add some
- - Go to config.py to see initial config, you can change to match with your model
- - Go to train.py to see training process
+ - Go to **config.py** , change **work_place** to your workplace, **result_all_model** that all model checkpoint after training will be saved at. Note that Result and Data should be saved outside of workplace for easy maintainance.        
+ - Data saved like this norm:   
+ ![Data folder tree](images/data_tree.png)  
+ - Go to **model_zoo.py** to see my initial models or add some of yours !
+ - Go to **train.py** to see training process, one important thing is the model_name is very importancce, all the code will recognize models by their name.
+ - Change model attributes and then run **CUDA_VISIBLE_DEVICES=0 python train.py** if you have gpu
  - Note that all of the code using tensorflow and keras
 2. Evaluate models
- - There are two file can evaluate the model: evaluate_opencv.py and evaluate_tf.py, the biggest difference between them is read image from directory: one read image by opencv, the other read by tensorflow, and then image will be resized to match model input. Both read function and resize function affect the performance of model, so notice that.
- - After run file to evaluate, the result will saved in / result_ \[model_name] / test_ \[cv or tf] . Result will include eer calculation, wrong sample path, and score prediction of test samples.    
- 3. Demo
- In demo folder, you can see some files:
-  - demo_face_detector.py: read an image and show image with face detection only
-  - demo_image.py: read an image, then detect face in image and predict that face is real or spoof 
-  - demo_video.py: read a video, show result of each frame in video, you can choose save video result or not
-  - demo_camera.py: read from camera of computer, this will show result of each frame
-  - gui.py: a simple GUI with tkinter to test on image
- All the files, you can change model_path to change model. The default will use a efficient net b0 which i trained before.
+ - Now **evaluate is in train.py**. After training, checkpoint will be save at ../result/_model_name_/train/checkpoint, then each checkpoint will be evaluate by tensorflow function      
+ - Another way to evaluate a checkpoint is run **evaluate_tf** (use tf function) or **evaluate_cv** (use opencv function), you need to change 2 parameters in main():
+ 	- **model_name**: the code recognize model by name, please remember it exactly      
+ 	- **index_cp_list**: list of checkpoint want to be evaluated
+3. Demo
+In demo folder, you can see some files:
+- **demo_face_detector.py**: read an image and show image with face detection only
+- **demo_image.py**: read an image, then detect face in image and predict that face is real or spoof 
+- **demo_video.py**: read a video, show result of each frame in video, you can choose save video result or not
+- **demo_camera.py**: read from camera of computer, this will show result of each frame
+- **gui.py**: a simple GUI with tkinter to test on image
+All the files, you can change model_path to change model. The default will use a efficient net b0 which i trained before.
 # Note
 These are important notes about the code
 
