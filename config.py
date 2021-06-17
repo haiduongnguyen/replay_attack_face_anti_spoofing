@@ -8,10 +8,9 @@ def make_dir(path):
     if not os.path.isdir(path):
         os.makedirs(path)
 
-work_place = '/home/duongnh/project_f19/photo_attack/code/face_anti_spoofing_efficientnet'
+work_place = '/home/duongnh/project_f19/replay_attack/code/'
 
-
-data_path = '/home/duongnh/project_f19/photo_attack/data'
+data_path = '/home/duongnh/project_f19/replay_attack/data'
 
 crop_folder = data_path + '/data_crop'
 
@@ -20,13 +19,11 @@ crop_data_train = crop_folder + '/train'
 crop_data_test = crop_folder + '/test'
 
 
-result_all_model = '/home/duongnh/project_f19/photo_attack/result'
-if not os.path.exists(result_all_model):
-    make_dir(result_all_model)
+result_all_model = '/home/duongnh/project_f19/replay_attack/result'
+
 
 # folder of network to detect face
 detector =  work_place + '/face_detector'
-
 
 
 

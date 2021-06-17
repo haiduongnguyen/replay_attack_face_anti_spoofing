@@ -7,9 +7,9 @@ def make_dir(path):
         os.makedirs(path)
 
 
-origin_data = '/home/duongnh/photo_crop'
+origin_data = '/home/duongnh/lam_data'
 
-base_folder = '/home/duongnh/liveness_detection_efficienetb4_20210515_ver02/face_anti_spoofing_efficientnet'
+base_folder = '/home/duongnh/project_f19/replay_attack/data'
 
 
 target_folder = base_folder + '/data_crop'
@@ -69,7 +69,7 @@ if check_folder(folder_path):
                                                 print("hoi bi nhieu thu muc qua r day !!!")                                  
 
 
-print(len(list_folder))
+print('number of folders: ' + str(len(list_folder)))
 
 
 # def copy_dir_to_dir(source, destination):
