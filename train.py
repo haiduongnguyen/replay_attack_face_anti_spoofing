@@ -231,8 +231,8 @@ if __name__ == '__main__':
     # b1_ver_1.train()
     # b1_ver_1.eval()
 
-    # b4_ver_1 = config_to_train(model_name='b4_ver_1', 
-    #                             initial_model='/home/duongnh/project_f19/photo_attack/result/b4_ver_1/train/checkpoint_b4_ver_1/cp_02.h5', 
-    #                             INIT_LR=1e-5, img_height=380, img_width=380 )
-    # b4_ver_1.train()
-    # b4_ver_1.eval()
+    b4_ver_1 = config_to_train(model_name='b4_ver_1', 
+                                initial_model='/home/duongnh/project_f19/photo_attack/result/b4_ver_1/train/checkpoint_b4_ver_1/cp_02.h5', 
+                                INIT_LR=1e-5, img_height=380, img_width=380 )
+    b4_ver_1.train()
+    b4_ver_1.eval()
