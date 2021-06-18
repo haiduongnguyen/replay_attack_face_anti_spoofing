@@ -37,6 +37,8 @@ def eval_tf(all_checkpoint_path, index_cp, result_folder):
     width , height = input_model[1], input_model[2]
     print(width, height)
 
+    if not os.path.isdir(result_folder):
+        os.makedirs(result_folder)
     result_test_folder = result_folder + '/test_'  + index_cp[:-3]
     if not os.path.isdir(result_test_folder):
         os.makedirs(result_test_folder)
@@ -172,10 +174,33 @@ if __name__ == '__main__':
 
     # change model name
     model_name = 'b0_ver_1'
-    result_folder = result_all_model + '/' + model_name 
-    all_checkpoint_path = result_folder + '/train/checkpoint_' + model_name 
-    
+    result_folder = result_all_model + '/photo_cp_' + model_name 
+    all_checkpoint_path = '/home/duongnh/project_f19/photo_attack/result/'+ model_name + '/train/checkpoint_' + model_name 
     # change list of cp will be evaluated
-    index_cp_list = ['cp_01.h5', 'cp_03.h5', 'cp_04.h5', 'cp_05.h5', 'cp_06.h5', 'cp_07.h5', 'cp_08.h5', 'cp_10.h5', 'cp_12.h5', 'cp_14.h5' ]
+    index_cp_list = [ 'cp_12.h5' ]
+    for index_cp in index_cp_list:
+        eval_tf(all_checkpoint_path, index_cp, result_folder) 
+
+    model_name = 'b0_ver_2'
+    result_folder = result_all_model + '/photo_cp_' + model_name 
+    all_checkpoint_path = '/home/duongnh/project_f19/photo_attack/result' + '/train/checkpoint_' + model_name 
+    # change list of cp will be evaluated
+    index_cp_list = [ 'cp_16.h5' ]
+    for index_cp in index_cp_list:
+        eval_tf(all_checkpoint_path, index_cp, result_folder) 
+    
+    model_name = 'b1_ver_1'
+    result_folder = result_all_model + '/photo_cp_' + model_name 
+    all_checkpoint_path = '/home/duongnh/project_f19/photo_attack/result' + '/train/checkpoint_' + model_name 
+    # change list of cp will be evaluated
+    index_cp_list = [ 'cp_04.h5' ]
+    for index_cp in index_cp_list:
+        eval_tf(all_checkpoint_path, index_cp, result_folder) 
+
+    model_name = 'b4_ver_1'
+    result_folder = result_all_model + '/photo_cp_' + model_name 
+    all_checkpoint_path = '/home/duongnh/project_f19/photo_attack/result' + '/train/checkpoint_' + model_name 
+    # change list of cp will be evaluated
+    index_cp_list = ['cp_02.h5', 'cp_04.h5' ]
     for index_cp in index_cp_list:
         eval_tf(all_checkpoint_path, index_cp, result_folder) 

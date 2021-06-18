@@ -12,7 +12,7 @@ work_place = '/home/duongnh/project_f19/replay_attack/code/replay_attack_face_an
 
 data_path = '/home/duongnh/project_f19/replay_attack/data'
 
-crop_folder = data_path + '/data_crop'
+crop_folder = data_path + '/all_data_crop'
 
 crop_data_train = crop_folder + '/train'
 
