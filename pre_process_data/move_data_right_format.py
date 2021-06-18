@@ -12,7 +12,7 @@ origin_data = '/home/duongnh/project_f19/replay_attack/data/lam_data'
 base_folder = '/home/duongnh/project_f19/replay_attack/data'
 
 
-target_folder = base_folder + '/data_crop'
+target_folder = base_folder + '/replay_crop'
 make_dir(target_folder)
 
 train_folder = target_folder + '/train'
