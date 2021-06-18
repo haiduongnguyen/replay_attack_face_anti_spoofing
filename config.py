@@ -8,7 +8,7 @@ def make_dir(path):
     if not os.path.isdir(path):
         os.makedirs(path)
 
-work_place = '/home/duongnh/project_f19/replay_attack/code/'
+work_place = '/home/duongnh/project_f19/replay_attack/code/replay_attack_face_anti_spoofing'
 
 data_path = '/home/duongnh/project_f19/replay_attack/data'
 

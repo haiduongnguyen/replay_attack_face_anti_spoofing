@@ -7,7 +7,7 @@ def make_dir(path):
         os.makedirs(path)
 
 
-origin_data = '/home/duongnh/lam_data'
+origin_data = '/home/duongnh/project_f19/replay_attack/data/lam_data'
 
 base_folder = '/home/duongnh/project_f19/replay_attack/data'
 
