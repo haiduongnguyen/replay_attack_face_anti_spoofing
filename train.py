@@ -6,6 +6,7 @@ import tensorflow_lattice as tfl
 import os, datetime
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import load_model
+from tensorflow.keras import layers
 from tqdm import tqdm
 import statistics
 # my packages
@@ -21,10 +22,10 @@ start = datetime.datetime.now()
 
 
 class config_to_train():
-    def __init__(self,model_name='b0', build_model=build_b0_gap, 
-                    img_width=224, img_height=224, img_depth=3, classes=2, INIT_LR=1e-4, batch_size=8, EPOCHS=20, patience=5):
+    def __init__(self,model_name='b0', initial_model='', 
+                    img_width=224, img_height=224, img_depth=3, classes=2, INIT_LR=1e-5, batch_size=8, EPOCHS=15, patience=5):
         self.model_name = model_name
-        self.build_model = build_model
+        self.initial_model = initial_model
         self.img_width = img_width
         self.img_height = img_height
         self.img_depth = img_depth
@@ -37,7 +38,10 @@ class config_to_train():
         self.result_folder = ''
     
     def train(self):
-        model = self.build_model(self.img_width, self.img_height, self.img_depth, self.classes)
+        model = load_model(self.initial_model)
+        for layer in model.layers:
+            if not isinstance(layer, layers.BatchNormalization):
+                layer.trainable = True
 
         self.result_folder = result_all_model + '/' + self.model_name
         if not os.path.isdir(self.result_folder):
@@ -209,30 +213,18 @@ class config_to_train():
 
 if __name__ == '__main__':
 
-    # b0_ver_1 = config_to_train(model_name='b0_ver_1', build_model=build_b0_gap, INIT_LR=1e-4 )
-    # b0_ver_1.train()
-    # b0_ver_1.eval()
+    b0_ver_1 = config_to_train(model_name='b0_ver_1', initial_model='', INIT_LR=1e-5 )
+    b0_ver_1.train()
+    b0_ver_1.eval()
 
-    # b0_ver_2 = config_to_train(model_name='b0_ver_2', build_model=build_b0_gap, INIT_LR=3e-4 )
-    # b0_ver_2.train()
-    # b0_ver_2.eval()
+    b0_ver_2 = config_to_train(model_name='b0_ver_2', initial_model='', INIT_LR=3e-5 )
+    b0_ver_2.train()
+    b0_ver_2.eval()
 
-    # b0_ver_3 = config_to_train(model_name='b0_ver_3', build_model=build_b0_fully_connected, INIT_LR=1e-4 )
-    # b0_ver_3.train()
-    # b0_ver_3.eval()
+    b1_ver_1 = config_to_train(model_name='b1_ver_1', initial_model='', INIT_LR=1e-5, img_height=240, img_width=240 )
+    b1_ver_1.train()
+    b1_ver_1.eval()
 
-    # b1_ver_1 = config_to_train(model_name='b1_ver_1', build_model=build_b1_gap, INIT_LR=1e-4, img_height=240, img_width=240, EPOCHS=15 )
-    # b1_ver_1.train()
-    # b1_ver_1.eval()
-
-    # b1_ver_2 = config_to_train(model_name='b1_ver_2', build_model=build_b1_gap, INIT_LR=3e-4, img_height=240, img_width=240, EPOCHS=15 )
-    # b1_ver_2.train()
-    # b1_ver_2.eval()
-
-    b4_ver_1 = config_to_train(model_name='b4_ver_1', build_model=build_b4_gap, INIT_LR=1e-4, img_height=380, img_width=380, EPOCHS=15 )
+    b4_ver_1 = config_to_train(model_name='b4_ver_1', initial_model='', INIT_LR=1e-5, img_height=380, img_width=380 )
     b4_ver_1.train()
     b4_ver_1.eval()
-
-    b4_ver_2 = config_to_train(model_name='b4_ver_2', build_model=build_b4_gap, INIT_LR=3e-4, img_height=380, img_width=380, EPOCHS=15 )
-    b4_ver_2.train()
-    b4_ver_2.eval()
