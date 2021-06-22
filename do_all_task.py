@@ -28,8 +28,11 @@ def show_image_size_survey():
         plt.title("Count by size = width + height ")
         plt.xticks(x_pos, x)
 
-    size_train= {'<100': 1077, '100-200': 17298, '200-300': 36400, '300-400': 42121, '400-500': 39558, '500-600': 34338, '600-700': 19799, '>700': 33470}
-    size_test = {'0-100': 219, '100-200': 3483,'200-300': 6772, '300-400': 6289, '400-500': 7343, '500-600': 5800, '600-700': 4109, '>700': 10378}
+    ## this is result of photo attack
+    # size_train= {'<100': 1077, '100-200': 17298, '200-300': 36400, '300-400': 42121, '400-500': 39558, '500-600': 34338, '600-700': 19799, '>700': 33470}
+    # size_test = {'0-100': 219, '100-200': 3483,'200-300': 6772, '300-400': 6289, '400-500': 7343, '500-600': 5800, '600-700': 4109, '>700': 10378}
+
+    # replay attack - not done yet
 
     show_graph(size_train)
     show_graph(size_test)
@@ -50,9 +53,8 @@ def show_tpr_fpr_graph(spoof_score_txt):
 
     # test set has number live sample : 20955
     # test set has number spoof sample : 23438
-    count_live = 20955
-    count_spoof = 23438
-    # count_spoof = 23437
+    count_live = 31667
+    count_spoof = 66838
 
     labels = np.array([0]*count_live + [1]*count_spoof, dtype=np.float)
 
@@ -89,13 +91,21 @@ def get_input_shape_model():
 
 if __name__ == '__main__':
     # task 1: survey in image size
-    show_image_size_survey()
+    # show_image_size_survey()
 
     # task 2: show fnr, tpr, threshold graph
-    # spoof_score_txt = '/home/duong/project/pyimage_research/result_model/version_2/result_new_b0_ver4/test_flow_from_directory_cp_01/score_prediction.txt'
-    # spoof_score_txt = '/home/duong/project/pyimage_research/result_model/version_2/result_new_b4_ver01/test_flow_from_directory_cp_04/score_prediction.txt'
-    # spoof_score_txt = '/home/duong/project/pyimage_research/result_model/version_2/result_new_b1_ver1/test_tf_cp_15/score_prediction.txt'
-    # show_tpr_fpr_graph(spoof_score_txt)
+    result_all = '/home/duong/project/pyimage_research/result_model/version_3/result_replay_attack_project_f19'
+
+    # model_name = 'b0_ver_1'
+    # list_cp_index = ['cp_01.h5', 'cp_03.h5','cp_04.h5','cp_06.h5']
+    # for cp_index in list_cp_index:
+    #     spoof_score_txt = result_all + '/' + model_name + '/test_' + cp_index[:-3] + '/score_prediction.txt' 
+    #     show_tpr_fpr_graph(spoof_score_txt)
+    model_name = 'b4_ver_1'
+    list_cp_index = ['cp_01.h5', 'cp_03.h5','cp_04.h5','cp_06.h5', 'cp_08.h5']
+    for cp_index in list_cp_index:
+        spoof_score_txt = result_all + '/' + model_name + '/test_' + cp_index[:-3] + '/score_prediction.txt' 
+        show_tpr_fpr_graph(spoof_score_txt)
 
 
     ## task 3: load model and get input shape of model

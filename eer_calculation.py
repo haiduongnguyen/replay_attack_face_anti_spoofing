@@ -45,16 +45,16 @@ def cal_metric(groundTruth, predicted):
 		TPRs[key] = np.squeeze(score).astype(float)
 
 	if 1:
-		plt.figure("auc")
-		plt.plot(xnew, ynew, label = "auc")
-		plt.xlabel("fpr")
-		plt.ylabel("tpr")
-
 		plt.figure("fnr and fpr")
 		plt.plot( thresholds, 1 - tpr, label="fnr")
 		plt.plot(thresholds, fpr, label = "fpr")
 		plt.xlabel("spoof_threshold")
 		plt.ylabel(" ")
+
+		plt.figure("auc")
+		plt.plot(xnew, ynew, label = "auc")
+		plt.xlabel("fpr")
+		plt.ylabel("tpr")
 
 		plt.legend()
 		plt.show()
